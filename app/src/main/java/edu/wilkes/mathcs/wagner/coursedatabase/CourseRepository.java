@@ -25,4 +25,10 @@ public class CourseRepository {
             courseDao.insert(course);
         });
     }
+
+    void delete(Course course) {
+        CourseRoomDatabase.databaseWriteExecutor.execute(() -> {
+            courseDao.delete(course);
+        });
+    }
 }

@@ -11,6 +11,10 @@ public class CourseListAdapter extends ListAdapter<Course, CourseViewHolder> {
         super(diffCallback);
     }
 
+    public Course getCourseAt(int position) {
+        return getItem(position);
+    }
+
     @Override
     public CourseViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         return CourseViewHolder.create(parent);

@@ -24,4 +24,8 @@ public class CourseViewModel extends AndroidViewModel {
     public void insert(Course course) {
         repository.insert(course);
     }
+
+    public void delete(Course course) {
+        repository.delete(course);
+    }
 }

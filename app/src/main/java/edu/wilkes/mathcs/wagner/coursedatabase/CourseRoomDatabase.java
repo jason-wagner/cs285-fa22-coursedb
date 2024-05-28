@@ -24,7 +24,7 @@ public abstract class CourseRoomDatabase extends RoomDatabase {
         if (INSTANCE == null) {
             synchronized (CourseRoomDatabase.class) {
                 if (INSTANCE == null) {
-                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), CourseRoomDatabase.class, "course_database").build();
+                    INSTANCE = Room.databaseBuilder(context.getApplicationContext(), CourseRoomDatabase.class, "course_database").fallbackToDestructiveMigration().addCallback(roomDatabaseCallback).build();
                 }
             }
         }

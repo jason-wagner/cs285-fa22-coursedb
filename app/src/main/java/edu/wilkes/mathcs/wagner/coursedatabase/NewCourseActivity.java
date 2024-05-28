@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class NewCourseActivity extends AppCompatActivity {
+    public static final String EXTRA_ID = "edu.wilkes.mathcs.wagner.coursedatabase.EXTRA_ID";
     public static final String EXTRA_TITLE = "edu.wilkes.mathcs.wagner.coursedatabase.EXTRA_TITLE";
     public static final String EXTRA_SUBJECT = "edu.wilkes.mathcs.wagner.coursedatabase.EXTRA_SUBJECT";
     public static final String EXTRA_NUMBER = "edu.wilkes.mathcs.wagner.coursedatabase.EXTRA_NUMBER";
@@ -26,6 +27,15 @@ public class NewCourseActivity extends AppCompatActivity {
         editProgLang = findViewById(R.id.editProgLang);
 
         final Button button = findViewById(R.id.button_save);
+
+        Intent d = getIntent();
+
+        if(d.hasExtra(EXTRA_ID)) {
+            editTitle.setText(d.getStringExtra(EXTRA_TITLE));
+            editSubject.setText(d.getStringExtra(EXTRA_SUBJECT));
+            editNumber.setText(d.getStringExtra(EXTRA_NUMBER));
+            editProgLang.setText(d.getStringExtra(EXTRA_PROGLANG));
+        }
 
         button.setOnClickListener(view -> {
             Intent i = new Intent();
@@ -45,6 +55,12 @@ public class NewCourseActivity extends AppCompatActivity {
                 i.putExtra(EXTRA_SUBJECT, subject);
                 i.putExtra(EXTRA_NUMBER, number);
                 i.putExtra(EXTRA_PROGLANG, progLang);
+
+                int id = getIntent().getIntExtra(EXTRA_ID, -1);
+                if (id != -1) {
+                    i.putExtra(EXTRA_ID, id);
+                }
+
                 setResult(RESULT_OK, i);
             }
 

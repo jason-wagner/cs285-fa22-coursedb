@@ -26,6 +26,12 @@ public class CourseRepository {
         });
     }
 
+    void update(Course course) {
+        CourseRoomDatabase.databaseWriteExecutor.execute(() -> {
+            courseDao.update(course);
+        });
+    }
+
     void delete(Course course) {
         CourseRoomDatabase.databaseWriteExecutor.execute(() -> {
             courseDao.delete(course);
